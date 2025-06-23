@@ -153,4 +153,52 @@ public class Solution {
                 .findFirst()
                 .orElse(-1);
     }
+
+    public int test9(int[][] maps) {
+        final int n = maps.length;
+        final int m = maps[0].length;
+
+        final boolean[][] visited = new boolean[n][m];
+        final Queue<Node> queue = new LinkedList<>();
+
+        queue.offer(new Node(0, 0, 1));
+        visited[0][0] = true;
+
+        int[] dx = {1, -1, 0, 0};
+        int[] dy = {0, 0, 1, -1};
+
+        while (!queue.isEmpty()) {
+            final Node node = queue.poll();
+
+            if (node.x == n - 1 && node.y == m - 1) {
+                return node.distance;
+            }
+
+            for  (int k = 0; k < dx.length; k++) {
+                int x = node.x + dx[k];
+                int y = node.y + dy[k];
+
+                if (x >= 0 && x < n && y >= 0 && y < m) {
+                    if (!visited[x][y] && maps[x][y] == 1) {
+                        visited[x][y] = true;
+                        queue.offer(new Node(x, y, node.distance + 1));
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    static class Node {
+        int x;
+        int y;
+        int distance;
+
+        public Node(int x, int y, int distance) {
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
+        }
+    }
 }

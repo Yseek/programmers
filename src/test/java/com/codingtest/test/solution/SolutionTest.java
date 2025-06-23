@@ -96,4 +96,21 @@ class SolutionTest {
         //then
         assertThat(answer).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("게임 맵 최단거리")
+    void test9() {
+        //given
+        int[][] maps = {
+                {1, 0, 1, 1, 1},
+                {1, 0, 1, 0, 1},
+                {1, 0, 1, 1, 1},
+                {1, 1, 1, 0, 1},
+                {0, 0, 0, 0, 1}
+        };
+        //when
+        final int answer = solution.test9(maps);
+        //then
+        assertThat(answer).isEqualTo(11);
+    }
 }
