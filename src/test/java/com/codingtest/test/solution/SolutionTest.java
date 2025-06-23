@@ -42,19 +42,13 @@ class SolutionTest {
     }
 
     @Test
-    @DisplayName("게임 맵 최단거리")
+    @DisplayName("약수의 합")
     void test4() {
         //given
-        int[][] map = {
-                {1, 0, 1, 1, 1},
-                {1, 0, 1, 0, 1},
-                {1, 0, 1, 1, 1},
-                {1, 1, 1, 0, 1},
-                {0, 0, 0, 0, 1}
-        };
+        int n = 12;
         //when
-        int answer = solution.test4(map);
+        int answer = solution.test4(n);
         //then
-        assertThat(answer).isEqualTo(11);
+        assertThat(answer).isEqualTo(28);
     }
 }
