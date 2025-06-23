@@ -201,4 +201,23 @@ public class Solution {
             this.distance = distance;
         }
     }
+
+    public int test10(int[] numbers, int target) {
+        return dfs(numbers, target, 0, 0);
+    }
+
+    private int dfs(int[] numbers, int target, int index, int sum) {
+
+        if (index == numbers.length) {
+            if (sum == target) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+        final int addResult = dfs(numbers, target, index + 1, sum + numbers[index]);
+        final int subtractResult = dfs(numbers, target, index + 1, sum - numbers[index]);
+        return addResult + subtractResult;
+    }
 }

@@ -113,4 +113,16 @@ class SolutionTest {
         //then
         assertThat(answer).isEqualTo(11);
     }
+
+    @Test
+    @DisplayName("타겟 넘버")
+    void test10() {
+        //given
+        int[] numbers = {1, 1, 1, 1, 1};
+        int target = 3;
+        //when
+        final int answer = solution.test10(numbers, target);
+        //then
+        assertThat(answer).isEqualTo(5);
+    }
 }
