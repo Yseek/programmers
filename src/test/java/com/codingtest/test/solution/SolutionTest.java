@@ -51,4 +51,15 @@ class SolutionTest {
         //then
         assertThat(answer).isEqualTo(28);
     }
+
+    @Test
+    @DisplayName("자릿수 더하기")
+    void test5() {
+        //given
+        int n = 123;
+        //when
+        int answer = solution.test5(n);
+        //then
+        assertThat(answer).isEqualTo(6);
+    }
 }

@@ -93,4 +93,16 @@ public class Solution {
 
         return set.stream().mapToInt(Integer::intValue).sum();
     }
+
+    public int test5(int n) {
+        int answer = 0;
+        while (n > 0) {
+            // 1. 가장 마지막 자릿수를 구해서 answer에 더함
+            answer += n % 10;
+            // 2. 마지막 자릿수를 제거
+            n /= 10;
+        }
+        return answer;
+    }
+
 }
