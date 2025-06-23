@@ -85,4 +85,15 @@ class SolutionTest {
         //then
         assertThat(answer).containsExactly(2, 4, 6, 8, 10);
     }
+
+    @Test
+    @DisplayName("나머지가 1이 되는 수 찾기")
+    void test8() {
+        //given
+        int n = 10;
+        //when
+        int answer = solution.test8(n);
+        //then
+        assertThat(answer).isEqualTo(3);
+    }
 }

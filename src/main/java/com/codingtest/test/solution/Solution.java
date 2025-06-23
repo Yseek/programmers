@@ -1,6 +1,7 @@
 package com.codingtest.test.solution;
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public class Solution {
@@ -143,5 +144,13 @@ public class Solution {
         return LongStream.iterate(x, i -> i + x)
                 .limit(n)
                 .toArray();
+    }
+
+    public int test8(int n) {
+
+        return IntStream.range(1, n)
+                .filter(i -> n % i == 1)
+                .findFirst()
+                .orElse(-1);
     }
 }
