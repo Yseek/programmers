@@ -220,4 +220,44 @@ public class Solution {
         final int subtractResult = dfs(numbers, target, index + 1, sum - numbers[index]);
         return addResult + subtractResult;
     }
+
+    public int test11(String str1, String str2) {
+
+        final List<String> multiSet1 = makeMultiSet(str1);
+        final List<String> multiSet2 = makeMultiSet(str2);
+
+        final ArrayList<String> copy1 = new ArrayList<>(multiSet1);
+        final ArrayList<String> copy2 = new ArrayList<>(multiSet2);
+
+        int intersectionSize = 0;
+        for (String s : copy1) {
+            if (copy2.remove(s)) {
+                intersectionSize++;
+            }
+        }
+
+        int unionSize = multiSet1.size() + multiSet2.size() -  intersectionSize;
+
+        if (unionSize == 0) {
+            return 65536;
+        }
+
+        final double jaccard = (double) intersectionSize / unionSize;
+
+        return (int) (jaccard * 65536);
+    }
+
+    private List<String> makeMultiSet(String s) {
+        List<String> list = new ArrayList<>();
+        s = s.toLowerCase();
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (Character.isLetter(s.charAt(i))&& Character.isLetter(s.charAt(i + 1))) {
+                list.add(s.substring(i, i + 2));
+            }
+        }
+
+        return list;
+    }
+
 }

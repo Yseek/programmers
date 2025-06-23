@@ -125,4 +125,21 @@ class SolutionTest {
         //then
         assertThat(answer).isEqualTo(5);
     }
+
+    @Test
+    @DisplayName("[1차] 뉴스 클러스터링")
+    void test11() {
+        //given
+        String str1 = "FRANCE";
+        String str2 = "french";
+
+        String str1_2 = "aa1+aa2";
+        String str2_2 = "AAAA12";
+        //when
+        final int answer = solution.test11(str1, str2);
+        final int answer2 = solution.test11(str1_2, str2_2);
+        //then
+        assertThat(answer).isEqualTo(16384);
+        assertThat(answer2).isEqualTo(43690);
+    }
 }
