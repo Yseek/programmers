@@ -1,5 +1,6 @@
 package com.codingtest.test.solution;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,5 +62,16 @@ class SolutionTest {
         int answer = solution.test5(n);
         //then
         assertThat(answer).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("자연수 뒤집어 배열로 만들기")
+    void test6() {
+        //given
+        long n = 12345;
+        //when
+        int[] answer = solution.test6(n);
+        //then
+        assertThat(answer).containsExactly(5, 4, 3, 2, 1);
     }
 }
