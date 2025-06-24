@@ -142,4 +142,15 @@ class SolutionTest {
         assertThat(answer).isEqualTo(16384);
         assertThat(answer2).isEqualTo(43690);
     }
+
+    @Test
+    @DisplayName("완전탐색 - 모음사전")
+    void findWordIndex() {
+        //given
+        String word = "AAAAE";
+        //when
+        final int answer = solution.findWordIndex(word);
+        //then
+        assertThat(answer).isEqualTo(6);
+    }
 }

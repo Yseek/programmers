@@ -260,4 +260,45 @@ public class Solution {
         return list;
     }
 
+    public int findWordIndex(String word) {
+
+        final List<String> dictionary = new ArrayList<>();
+
+        findWordIndex_dfs("", dictionary);
+
+        return dictionary.indexOf(word);
+    }
+
+    /**
+     * 실행 흐름:
+     *
+     * solution이 dfs("")를 호출합니다.
+     * dfs("")는 for문을 돌며 dfs("A"), dfs("E"), dfs("I"), dfs("O"), dfs("U")를 차례로 호출합니다.
+     * **dfs("A")**가 먼저 호출됩니다.
+     * dictionary에 "A"를 추가합니다.
+     * 길이가 5가 아니므로 for문을 돕니다.
+     * **dfs("AA")**를 호출합니다.
+     * **dfs("AA")**가 호출됩니다.
+     * dictionary에 "AA"를 추가합니다.
+     * ...
+     * **dfs("AAAAA")**까지 호출됩니다.
+     * dfs("AAAAA")는 dictionary에 "AAAAA"를 추가하고, 길이가 5이므로 return 합니다.
+     * 이제 dfs("AAAA")로 돌아와서 다음 모음인 E를 붙여 **dfs("AAAAE")**를 호출합니다.
+     * 이 과정을 반복하면 dictionary 리스트에는 ["A", "AA", "AAA", "AAAA", "AAAAA", "AAAAE", ...] 순서로 모든 단어가 정확하게 저장됩니다.
+     */
+    private void findWordIndex_dfs(String currentWord, List<String> dictionary) {
+        // 1. 나 자신(currentWord)을 사전에 추가한다.
+        dictionary.add(currentWord);
+
+        // 2. 만약 단어 길이가 5가 되면, 더 이상 탐색하지 않고 종료 (분신을 만들지 않음)
+        if (currentWord.length() == 5) {
+            return;
+        }
+
+        // 3. 모음들을 하나씩 돌면서 다음 단어를 만들어 분신에게 탐색을 맡긴다.
+        char[] vowels = {'A', 'E', 'I', 'O', 'U'};
+        for (char c : vowels) {
+            findWordIndex_dfs(currentWord + c, dictionary);
+        }
+    }
 }
