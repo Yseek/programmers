@@ -301,4 +301,50 @@ public class Solution {
             findWordIndex_dfs(currentWord + c, dictionary);
         }
     }
+
+    public int visitedLength(String dirs) {
+        // 현재 위치 (0,0에서 시작)를 배열 인덱스 (5,5)에 매핑
+        int x = 5, y = 5;
+
+        // 걸어온 길을 저장할 Set. 중복된 길은 저장되지 않음.
+        Set<String> visitedEdges = new HashSet<>();
+
+        for (char dir : dirs.toCharArray()) {
+            int prevX = x;
+            int prevY = y;
+            int nextX = x;
+            int nextY = y;
+
+            switch (dir) {
+                case 'U' -> nextY++;
+                case 'D' -> nextY--;
+                case 'R' -> nextX++;
+                case 'L' -> nextX--;
+            }
+
+            // 1. 맵 경계선 확인 (0~10 범위)
+            if (nextX < 0 || nextX > 10 || nextY < 0 || nextY > 10) {
+                continue; // 맵을 벗어나는 명령어는 무시
+            }
+
+            // 위치 업데이트
+            x = nextX;
+            y = nextY;
+
+            // 2. 경로를 표준화된 형태로 만듦 (A->B 와 B->A 를 같게 취급)
+            // 항상 좌표값이 더 작은 쪽을 시작점으로 하여 문자열 생성
+            String path;
+            if (prevX < x || (prevX == x && prevY < y)) {
+                path = prevX + "," + prevY + "->" + x + "," + y;
+            } else {
+                path = x + "," + y + "->" + prevX + "," + prevY;
+            }
+
+            // 3. 만들어진 경로를 Set에 추가
+            visitedEdges.add(path);
+        }
+
+        // Set의 크기가 바로 처음 걸어본 길의 개수
+        return visitedEdges.size();
+    }
 }

@@ -153,4 +153,15 @@ class SolutionTest {
         //then
         assertThat(answer).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("방문 길이")
+    void visitedLength() {
+        //given
+        String dirs = "LULLLLLLU";
+        //when
+        final int answer = solution.visitedLength(dirs);
+        //then
+        assertThat(answer).isEqualTo(7);
+    }
 }
